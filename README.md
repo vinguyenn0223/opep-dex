@@ -29,10 +29,10 @@ A full-stack meme DEX built on **OPN Chain testnet (chainId 984)** for the IOPn 
 | StakingRewards | [`0x27Fe6Cc7E887E70655B96d23Fc2cd29283238D94`](https://testnet.iopn.tech/address/0x27Fe6Cc7E887E70655B96d23Fc2cd29283238D94#code) | ✅ |
 | MerkleAirdrop | [`0xdA48B038459308A4FA2E2C21e15Ab9204629c09a`](https://testnet.iopn.tech/address/0xdA48B038459308A4FA2E2C21e15Ab9204629c09a#code) | ✅ |
 | Launchpad | [`0x97fcCf7635038b6af8f51741278BAEc1aE2673C9`](https://testnet.iopn.tech/address/0x97fcCf7635038b6af8f51741278BAEc1aE2673C9#code) | ✅ |
-| Presale (OPEPE) | `0xDD362f9d0A02C48ff2DC9Eee00d83ac0FCd51e25` | — |
-| Pair (OPEPE/OPN) | `0x6fE14550Fc3753662000b8d3800012C30a3C49Fd` | pending* |
+| Presale (OPEPE) | [`0xDD362f9d0A02C48ff2DC9Eee00d83ac0FCd51e25`](https://testnet.iopn.tech/address/0xDD362f9d0A02C48ff2DC9Eee00d83ac0FCd51e25#code) | ✅ |
+| Pair (OPEPE/OPN) | [`0x6fE14550Fc3753662000b8d3800012C30a3C49Fd`](https://testnet.iopn.tech/address/0x6fE14550Fc3753662000b8d3800012C30a3C49Fd#code) | ✅ |
 
-\* The OPEPE/OPN pair is created by the Factory via CREATE2. It is a real, working contract (it backs every swap), but Blockscout's internal-tx indexer hasn't picked up its creation yet. Run `npx hardhat run scripts/verify-pair.ts --network opn` to retry once the indexer catches up. Its source is `DexPair.sol`, already public via the verified Factory/Router.
+The OPEPE/OPN pair is created by the Factory via CREATE2 and backs every swap; its source is `DexPair.sol`. Use `npx hardhat run scripts/verify-pair.ts --network opn` to (re)verify the pair after it is created.
 
 ## Repository layout
 
@@ -86,7 +86,7 @@ Connect MetaMask on the OPN testnet (chainId 984) to interact.
 
 ## Verification
 
-All 7 deployed contracts are source-verified on the OPN testnet explorer. Every feature has been exercised on-chain with a live wallet — `scripts/smoke.ts` runs swap (both directions), add/remove liquidity, presale contribute, stake + claim rewards + unstake, and airdrop claim, reporting **13/13 features passing**.
+All 9 contracts (7 deployed directly, plus the CREATE2 Pair and the Presale) are source-verified on the OPN testnet explorer. Every feature has been exercised on-chain with a live wallet — `scripts/smoke.ts` runs swap (both directions), add/remove liquidity, presale contribute, stake + claim rewards + unstake, and airdrop claim, reporting **13/13 features passing**.
 
 ## Security notes
 
