@@ -1,0 +1,28 @@
+# --- Secrets: NEVER commit these ---
+.env
+.env.*
+!.env.example
+**/.env
+**/.env.*
+!**/.env.example
+*.key
+*.pem
+secrets.json
+
+# Dependencies
+node_modules
+**/node_modules
+
+# Build / cache artifacts
+.next
+out
+cache
+artifacts
+typechain-types
+coverage
+coverage.json
+*.tsbuildinfo
+next-env.d.ts
+
+# Local deployment snapshots
+deployments/*.local.json

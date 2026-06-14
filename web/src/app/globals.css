@@ -1,0 +1,628 @@
+/* ===========================================================
+   OPEPE DEX — cute meme theme
+   Pepe-green palette, soft rounded cards, playful gradients.
+   Class names here are kept in sync with the components.
+   =========================================================== */
+
+:root {
+  --bg: #0d1117;
+  --bg-glow-1: #14532d;
+  --bg-glow-2: #0b3a5b;
+  --panel: #161d2b;
+  --panel-2: #1d2738;
+  --panel-3: #232f44;
+  --border: #2c3a55;
+  --border-soft: #243049;
+  --text: #eef3ff;
+  --muted: #93a1c4;
+  --accent: #5be584;
+  --accent-2: #36c46b;
+  --accent-ink: #06210f;
+  --pink: #ff9ed8;
+  --yellow: #ffd56b;
+  --danger: #ff7a7a;
+  --radius: 20px;
+  --radius-sm: 14px;
+  --shadow: 0 10px 40px rgba(0, 0, 0, 0.35);
+  --shadow-glow: 0 8px 30px rgba(91, 229, 132, 0.18);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  color: var(--text);
+  font-family: var(--font-body), ui-rounded, "Segoe UI", system-ui, -apple-system, Roboto, sans-serif;
+  background:
+    radial-gradient(900px 500px at 12% -8%, rgba(20, 83, 45, 0.5), transparent 60%),
+    radial-gradient(800px 520px at 100% 0%, rgba(11, 58, 91, 0.45), transparent 55%),
+    var(--bg);
+  background-attachment: fixed;
+  min-height: 100vh;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+input,
+button {
+  font-family: inherit;
+}
+
+.container {
+  max-width: 880px;
+  margin: 0 auto;
+  padding: 28px 18px 96px;
+}
+
+/* ---------- Nav ---------- */
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  backdrop-filter: blur(12px);
+  background: rgba(13, 17, 23, 0.72);
+  border-bottom: 1px solid var(--border-soft);
+}
+
+.nav-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding-top: 14px;
+  padding-bottom: 14px;
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  font-family: var(--font-display), inherit;
+  font-weight: 800;
+  font-size: 20px;
+  letter-spacing: 0.3px;
+  background: linear-gradient(95deg, var(--accent), var(--yellow));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  white-space: nowrap;
+}
+
+.brand-mark {
+  font-size: 24px;
+  filter: drop-shadow(0 2px 6px rgba(91, 229, 132, 0.5));
+  animation: bob 3s ease-in-out infinite;
+}
+
+@keyframes bob {
+  0%, 100% { transform: translateY(0) rotate(-3deg); }
+  50% { transform: translateY(-3px) rotate(3deg); }
+}
+
+.nav-links {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  flex: 1;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.nav-link {
+  color: var(--muted);
+  font-size: 14px;
+  font-weight: 600;
+  padding: 7px 13px;
+  border-radius: 999px;
+  transition: all 0.16s ease;
+}
+
+.nav-link:hover {
+  color: var(--text);
+  background: var(--panel-2);
+}
+
+.nav-link.active {
+  color: var(--accent-ink);
+  background: linear-gradient(95deg, var(--accent), var(--accent-2));
+  box-shadow: var(--shadow-glow);
+}
+
+/* ---------- Layout helpers ---------- */
+.stack {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* ---------- Hero ---------- */
+.hero {
+  text-align: center;
+  padding: 18px 0 6px;
+}
+
+.hero-mark {
+  font-size: 64px;
+  line-height: 1;
+  filter: drop-shadow(0 6px 18px rgba(91, 229, 132, 0.45));
+  animation: bob 3s ease-in-out infinite;
+}
+
+.hero-title {
+  margin: 10px 0 6px;
+  font-family: var(--font-display), inherit;
+  font-size: 40px;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+  background: linear-gradient(95deg, var(--accent), var(--yellow));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.hero-sub {
+  margin: 0 auto;
+  max-width: 480px;
+  color: var(--muted);
+  font-size: 15px;
+  font-weight: 600;
+}
+
+/* ---------- Card ---------- */
+.card {
+  position: relative;
+  background: linear-gradient(180deg, var(--panel), var(--panel-2));
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 22px;
+  margin-bottom: 16px;
+  box-shadow: var(--shadow);
+}
+
+.card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: var(--radius);
+  padding: 1px;
+  background: linear-gradient(140deg, rgba(91, 229, 132, 0.35), transparent 40%);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+.card-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 18px;
+}
+
+.card-head h2,
+.card h2 {
+  margin: 0;
+  font-family: var(--font-display), inherit;
+  font-size: 22px;
+  font-weight: 800;
+}
+
+/* ---------- Fields ---------- */
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  margin-bottom: 14px;
+}
+
+.field > span {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--muted);
+}
+
+.field input {
+  width: 100%;
+  background: var(--bg);
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 13px 15px;
+  color: var(--text);
+  font-size: 17px;
+  font-weight: 600;
+  outline: none;
+  transition: border-color 0.16s, box-shadow 0.16s;
+}
+
+.field input::placeholder {
+  color: #5c6890;
+}
+
+.field input:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 4px rgba(91, 229, 132, 0.14);
+}
+
+.grid2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+/* ---------- Quote (swap output) ---------- */
+.quote {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--bg);
+  border: 1.5px dashed var(--border);
+  border-radius: var(--radius-sm);
+  padding: 14px 16px;
+  margin-bottom: 16px;
+}
+
+.quote > span {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--muted);
+}
+
+.quote > strong {
+  font-size: 20px;
+  font-weight: 800;
+  color: var(--accent);
+}
+
+/* ---------- Rows / stats ---------- */
+.rows {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 16px;
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 11px 0;
+  border-bottom: 1px solid var(--border-soft);
+  font-size: 14px;
+}
+
+.row:last-child {
+  border-bottom: none;
+}
+
+.row > span {
+  color: var(--muted);
+  font-weight: 500;
+}
+
+.row > strong {
+  font-weight: 700;
+}
+
+.row.highlight {
+  background: linear-gradient(95deg, rgba(91, 229, 132, 0.12), transparent);
+  border: 1px solid rgba(91, 229, 132, 0.3);
+  border-radius: var(--radius-sm);
+  padding: 12px 14px;
+  margin: 6px 0;
+}
+
+.row.highlight > strong {
+  color: var(--accent);
+  font-size: 17px;
+}
+
+/* ---------- Buttons ---------- */
+.primary,
+.secondary,
+.ghost {
+  border-radius: var(--radius-sm);
+  padding: 13px 18px;
+  font-size: 15px;
+  font-weight: 800;
+  cursor: pointer;
+  width: 100%;
+  border: 1.5px solid transparent;
+  transition: transform 0.12s ease, box-shadow 0.16s, background 0.16s, opacity 0.16s;
+}
+
+.primary {
+  background: linear-gradient(95deg, var(--accent), var(--accent-2));
+  color: var(--accent-ink);
+  box-shadow: var(--shadow-glow);
+}
+
+.primary:hover:not(:disabled) {
+  transform: translateY(-1px);
+  box-shadow: 0 12px 34px rgba(91, 229, 132, 0.32);
+}
+
+.secondary {
+  background: var(--panel-3);
+  color: var(--text);
+  border-color: var(--border);
+  margin-top: 10px;
+}
+
+.secondary:hover:not(:disabled) {
+  background: var(--panel-2);
+  border-color: var(--accent);
+}
+
+.ghost {
+  background: transparent;
+  color: var(--muted);
+  border-color: var(--border);
+  width: auto;
+  padding: 8px 14px;
+  font-size: 14px;
+}
+
+.ghost:hover:not(:disabled) {
+  color: var(--text);
+  border-color: var(--accent);
+}
+
+.primary:disabled,
+.secondary:disabled,
+.ghost:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.btn-row {
+  display: flex;
+  gap: 10px;
+}
+
+/* ---------- Hints ---------- */
+.hint {
+  font-size: 14px;
+  color: var(--muted);
+  text-align: center;
+  padding: 8px 0;
+  margin: 6px 0 0;
+}
+
+.hint.small {
+  font-size: 12px;
+  opacity: 0.8;
+}
+
+.hint code {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 1px 6px;
+  font-size: 12px;
+  color: var(--yellow);
+}
+
+/* ---------- Progress bar ---------- */
+.progress {
+  height: 12px;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  overflow: hidden;
+  margin: 6px 0 16px;
+}
+
+.progress-bar {
+  height: 100%;
+  background: linear-gradient(95deg, var(--accent), var(--yellow));
+  border-radius: 999px;
+  transition: width 0.5s ease;
+  box-shadow: 0 0 12px rgba(91, 229, 132, 0.5);
+}
+
+/* ===========================================================
+   MEME LAYER — floating decor, ticker, badges, speech bubble
+   =========================================================== */
+
+/* ---------- Floating background emojis ---------- */
+.decor {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.decor span {
+  position: absolute;
+  font-size: 34px;
+  opacity: 0.16;
+  animation: float-up linear infinite;
+  filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.3));
+}
+
+@keyframes float-up {
+  0% {
+    transform: translateY(110vh) rotate(0deg) scale(0.9);
+    opacity: 0;
+  }
+  10% { opacity: 0.18; }
+  90% { opacity: 0.18; }
+  100% {
+    transform: translateY(-15vh) rotate(220deg) scale(1.1);
+    opacity: 0;
+  }
+}
+
+/* keep content above the decor layer */
+.nav,
+.container {
+  position: relative;
+  z-index: 1;
+}
+
+/* ---------- Marquee ticker ---------- */
+.ticker {
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+  white-space: nowrap;
+  border-bottom: 1px solid var(--border-soft);
+  background: linear-gradient(95deg, rgba(91, 229, 132, 0.12), rgba(255, 213, 107, 0.1));
+  padding: 7px 0;
+}
+
+.ticker-track {
+  display: inline-block;
+  animation: marquee 22s linear infinite;
+  font-family: var(--font-display), inherit;
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: 0.4px;
+  color: var(--accent);
+}
+
+.ticker-track span {
+  margin: 0 18px;
+  opacity: 0.9;
+}
+
+.ticker:hover .ticker-track {
+  animation-play-state: paused;
+}
+
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* ---------- Speech bubble (hero) ---------- */
+.bubble {
+  display: inline-block;
+  position: relative;
+  margin-top: 14px;
+  padding: 9px 16px;
+  background: var(--yellow);
+  color: #4a3700;
+  font-family: var(--font-display), inherit;
+  font-weight: 800;
+  font-size: 14px;
+  border-radius: 999px;
+  box-shadow: 0 6px 18px rgba(255, 213, 107, 0.3);
+  animation: wobble 4s ease-in-out infinite;
+}
+
+.bubble::after {
+  content: "";
+  position: absolute;
+  left: 28px;
+  bottom: -7px;
+  border: 7px solid transparent;
+  border-top-color: var(--yellow);
+  border-bottom: 0;
+}
+
+@keyframes wobble {
+  0%, 100% { transform: rotate(-2deg); }
+  50% { transform: rotate(2deg); }
+}
+
+/* ---------- Emoji badge on card headers ---------- */
+.card-head h2,
+.card h2 {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* ---------- Stat pills with color ---------- */
+.row.highlight {
+  background: linear-gradient(95deg, rgba(255, 213, 107, 0.14), rgba(91, 229, 132, 0.1));
+  border: 1px solid rgba(255, 213, 107, 0.32);
+}
+
+.row.highlight > strong {
+  color: var(--yellow);
+}
+
+/* ---------- Hero mark gets a little pond shadow ---------- */
+.hero-mark {
+  position: relative;
+  display: inline-block;
+}
+
+.hero-mark::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -10px;
+  width: 56px;
+  height: 10px;
+  transform: translateX(-50%);
+  background: radial-gradient(ellipse, rgba(91, 229, 132, 0.4), transparent 70%);
+  border-radius: 50%;
+}
+
+/* ---------- Cute card hover (sticker tilt) ---------- */
+.card {
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
+}
+
+.card:hover {
+  transform: translateY(-2px);
+}
+
+/* ---------- Empty-state frog ---------- */
+.empty {
+  text-align: center;
+  padding: 14px 0 4px;
+}
+
+.empty-mark {
+  font-size: 44px;
+  display: block;
+  margin-bottom: 6px;
+  animation: bob 3s ease-in-out infinite;
+}
+
+/* ---------- Pill tag (e.g. "1000x soon") ---------- */
+.pill {
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 800;
+  font-family: var(--font-display), inherit;
+}
+
+.pill.green { background: rgba(91, 229, 132, 0.18); color: var(--accent); }
+.pill.pink { background: rgba(255, 158, 216, 0.18); color: var(--pink); }
+.pill.yellow { background: rgba(255, 213, 107, 0.18); color: var(--yellow); }
+
+/* ---------- Responsive ---------- */
+@media (max-width: 640px) {
+  .nav-inner {
+    flex-wrap: wrap;
+  }
+  .nav-links {
+    order: 3;
+    width: 100%;
+    justify-content: flex-start;
+  }
+  .grid2 {
+    grid-template-columns: 1fr;
+  }
+  .card h2,
+  .card-head h2 {
+    font-size: 20px;
+  }
+  .hero-title { font-size: 32px; }
+  .decor span { font-size: 26px; }
+}
